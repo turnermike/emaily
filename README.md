@@ -10,3 +10,14 @@ Login
 
 Create new app
 ```heroku create```
+Will return web URL and git remote URL for deployments.
+
+Push a deployment
+```git push heroku master```
+
+Open app in a browser
+```heroku open```
+
+Open logs
+```heroku logs```
+

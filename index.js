@@ -7,7 +7,7 @@ const app = express();                  // create app object
 // req = request
 // res = response
 app.get('/', (req, res) => {
-    res.send({ hi: 'there' });
+    res.send({ bye: 'buddy' });
 });
 
 // instruct node to listen on port

@@ -3,6 +3,23 @@
 Node with React: Fullstack Web Development
 [https://www.udemy.com/node-with-react-fullstack-web-development/](https://www.udemy.com/node-with-react-fullstack-web-development/)
 
+# JS Libraries
+- passport.js
+    - including a passport strategy for Goolge OAuth
+```
+npm install --save passport passport-google-oauth20
+```
+
+
+
+
+
+
+
+
+
+### CLI Commands
+
 ## Heroku
 
 Login

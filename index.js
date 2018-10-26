@@ -14,11 +14,16 @@ passport.use(
         clientID: keys.googleClientID,
         clientSecret: keys.googleClientSecret,
         callbackURL: '/auth/google/callback'
-    }, (accessToken) => {
+    }, (accessToken, refreshToken, profile, done) => {
+        // accessToken returned from google
         console.log('accessToken', accessToken);
+        console.log('refreshToken',refreshToken);
+        console.log('profile', profile);
+        console.log('done', done);
     })
 );
 
+// route: /auth/google
 app.get(
     '/auth/google',
     passport.authenticate('google', {
@@ -26,12 +31,9 @@ app.get(
     })
 );
 
+// route: /auth/google/callback
+app.get('/auth/google/callback', passport.authenticate('google'));
 
-// https://accounts.google.com/o/oauth2/v2/auth?
-// response_type=code&
-// redirect_uri=http%3A%2F%2Flocalhost%3A5000%2Fauth%2Fgoogle%2Fcallback&
-// scope=profile%20email&
-// client_id=508753040406-jb4k1tra31mb17kmfkr93k94olm9ogl2.apps.googleusercontent.com
 
 // route handler for get requests to '/'
 // req = request

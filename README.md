@@ -20,6 +20,12 @@ npm install --save passport passport-google-oauth20
 
 ### CLI Commands
 
+## Nodemon
+Run node and auto refresh on save.
+```
+npm run dev
+```
+
 ## Heroku
 
 Login

@@ -3,6 +3,15 @@
 Node with React: Fullstack Web Development
 [https://www.udemy.com/node-with-react-fullstack-web-development/](https://www.udemy.com/node-with-react-fullstack-web-development/)
 
+
+# mLab
+Using [mlab](https://mlab.com/home) for remote MongoDB hosting.
+
+Database: emaily-dev
+User: mike
+Password: password
+
+
 # JS Libraries
 - passport.js
     - including a passport strategy for Goolge OAuth
@@ -24,7 +33,7 @@ npm install --save mongoose
 
 
 
-### CLI Commands
+# CLI Commands
 
 ## Nodemon
 Run node and auto refresh on save.

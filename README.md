@@ -10,6 +10,12 @@ Node with React: Fullstack Web Development
 npm install --save passport passport-google-oauth20
 ```
 
+- mongoose.js
+    - used as a helper for MongoDB
+```
+npm install --save mongoose
+```
+
 
 
 

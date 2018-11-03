@@ -1,8 +1,8 @@
 const express = require('express');     // using "common js modules"
 const mongoose = require('mongoose');
 const keys = require('./config/keys');
-require('./services/passport.js');
 require('./models/user');
+require('./services/passport.js');
 // import express from 'express'           // example using ES2015 modules (node does not support)
 
 // connect to MongoDB via mongoose

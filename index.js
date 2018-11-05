@@ -1,7 +1,7 @@
 const express = require('express');     // using "common js modules"
 const mongoose = require('mongoose');
 const keys = require('./config/keys');
-require('./models/user');
+require('./models/User');
 require('./services/passport.js');
 // import express from 'express'           // example using ES2015 modules (node does not support)
 

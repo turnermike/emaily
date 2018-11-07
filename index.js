@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 const keys = require('./config/keys');
-require('./models/User');
+require('./models/user');
 require('./services/passport.js');
 // import express from 'express'           // example using ES2015 modules (node does not support)
 

@@ -12,7 +12,7 @@ User: mike
 Password: password
 
 
-# JS Libraries
+# NPM Modules Used
 - passport.js
     - including a passport strategy for Goolge OAuth
 ```
@@ -25,6 +25,10 @@ npm install --save passport passport-google-oauth20
 npm install --save mongoose
 ```
 
+- create-react-app
+```
+sudo npm install -g create-react-app
+```
 
 
 

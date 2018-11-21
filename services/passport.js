@@ -24,7 +24,8 @@ passport.use(
         clientSecret: keys.googleClientSecret,
         callbackURL: '/auth/google/callback',
         proxy: true
-    }, (accessToken, refreshToken, profile, done) => {
+    },
+    async (accessToken, refreshToken, profile, done) => {
         // accessToken returned from google
         // console.log('accessToken', accessToken);
         // console.log('refreshToken',refreshToken);
@@ -33,17 +34,18 @@ passport.use(
 
         // check for an existing user via Mongoose .findOne
         // uses a promise (.then()) to handle the ajax response
-        User.findOne({ googleId: profile.id }).then((existingUser) => {
-            if (existingUser) {
-                // we already have a record with that googleId
-                done(null, existingUser);
-            } else {
-                // we don't have a record for that user, make one
-                new User({ googleId: profile.id })      // creates a Mongoose modle instance (represents a single record)
-                    .save()                             // save the instance to MongoDB
-                    .then(user => done(null, user));    // callback, use Passport done
-            }
-        });
+        const existingUser = await User.findOne({ googleId: profile.id })
 
-    })
+        if (existingUser) {
+            // we already have a record with that googleId
+            return done(null, existingUser);
+        }
+
+        // we don't have a record for that user, make one
+        // creates a Mongoose modle instance (represents a single record)
+        const user = await new User({ googleId: profile.id }).save()            // save the instance to MongoDB
+        done(null, user);                                                       // callback, use Passport done
+
+        }
+    )
 );

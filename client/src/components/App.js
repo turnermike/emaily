@@ -1,3 +1,5 @@
+// holds react router stuff
+
 import React from 'react';
 
 const App = () => {

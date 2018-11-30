@@ -5,12 +5,17 @@
 import axios from 'axios';
 import { FETCH_USER } from './types';
 
-const fetchUser = () => {
+// const fetchUser = () => {
+//     return function(dispatch) {
+//         axios
+//             .get('/api/current_user')
+//             .then(res => dispatch({ type: FETCH_USER, payload: res }));
+//     }
+// };
 
-    return function(dispatch) {
-        axios
-            .get('/api/current_user')
-            .then(res => dispatch({ type: FETCH_USER, payload: res }));
-    }
-
-};
+// same fetchUser function as above, only refactored
+// curly braces not required for a single statement
+const fetchUser = () => async dispatch => {
+    const res await axios.get('/api/current_user');
+    dispatch({ type: FETCH_USER, payload: res.data }); // return the data
+}

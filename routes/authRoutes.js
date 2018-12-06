@@ -11,7 +11,13 @@ module.exports = app => {
     );
 
     // route: /auth/google/callback
-    app.get('/auth/google/callback', passport.authenticate('google'));
+    app.get(
+        '/auth/google/callback',                // returning from passport.js oauth flow
+        passport.authenticate('google'),        // passport.js middleware handles auth
+        (req, res) => {
+            res.redirect('/surveys');           // use the response to redirect to route
+        }
+    );
 
     // logout user
     app.get('/api/logout', (req, res) => {

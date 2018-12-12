@@ -1,5 +1,5 @@
 // holds Redux setup
-
+// ES2015 modules
 import 'materialize-css/dist/css/materialize.min.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -18,3 +18,5 @@ ReactDOM.render(
 );
 
 
+console.log('stripe key: ', process.env.REACT_APP_STRIPE_KEY);
+console.log('environment: ', process.env.NODE_ENV);

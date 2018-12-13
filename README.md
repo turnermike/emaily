@@ -11,6 +11,9 @@ Database: emaily-dev
 User: mike
 Password: password
 
+# Stripe
+Test Card: 4242 4242 4242 4242
+
 
 # NPM Modules Used
 - passport.js

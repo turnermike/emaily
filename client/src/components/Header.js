@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Payments } from './Payments';
+import Payments from './Payments';
 
 class Header extends Component {
 
@@ -21,7 +21,8 @@ class Header extends Component {
     }
 
     render() {
-        console.log('this.props', this.props);
+        // console.log('hit Header.js render()');
+        // console.log('this.props', this.props);
 
         return (
             <nav>

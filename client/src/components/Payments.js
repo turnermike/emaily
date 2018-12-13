@@ -8,9 +8,13 @@ import StripeCheckout from 'react-stripe-checkout';
  *
  */
 
+console.log('process.env.REACT_APP_STRIPE_KEY', process.env.REACT_APP_STRIPE_KEY);
+
 class Payments extends Component {
 
     render() {
+
+        // console.log('hit Payments.js render()');
 
         // debugger;
 

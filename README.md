@@ -7,10 +7,21 @@ Node with React: Fullstack Web Development
 # mLab
 Using [mlab](https://mlab.com/home) for remote MongoDB hosting.
 
+Dev: `mongodb://mike:password1@ds147233.mlab.com:47233/emaily-dev`
+```
 Database: emaily-dev
 User: mike
-Password: password
+Password: password1
+```
 
+Prod: `mongodb://mikeprod:password1@ds155073.mlab.com:55073/emaily-prod416`
+```
+Host: ds155073.mlab.com
+Port: 55073
+Database: emaily-prod416
+User: mike-prod
+Password: password1
+```
 # Stripe
 Test Card: 4242 4242 4242 4242
 

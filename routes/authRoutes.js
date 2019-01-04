@@ -1,5 +1,7 @@
 const passport = require('passport');
 
+// arrow function using express 'app' object
+// called via root index.js
 module.exports = app => {
 
     // route: /auth/google

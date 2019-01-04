@@ -47,6 +47,11 @@ sudo npm install -g create-react-app
 
 
 
+# Naming Conventions
+
+## Files
+If the file exports a function we use a lowercase letter for the first character.
+If the file exports a class we use a capital letter for the first character.
 
 
 

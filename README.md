@@ -82,3 +82,28 @@ Open app in a browser
 Open logs
 ```heroku logs```
 
+
+
+
+
+# Production Deployments
+
+## Production Assets
+Use create-create-app's build.
+```
+cd client
+npm run build
+```
+
+
+
+
+
+
+
+
+
+
+
+
+

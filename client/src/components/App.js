@@ -1,4 +1,4 @@
-// holds react router stuff
+// configure react router
 
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';    // BrowserRouter and Router are both React Components

@@ -13,7 +13,7 @@ import * as actions from '../actions';
 class Payments extends Component {
   render() {
     // console.log('hit Payments.js render()');
-    console.log('Key', process.env.REACT_APP_STRIPE_KEY);
+    // console.log('Key', process.env.REACT_APP_STRIPE_KEY);
     // debugger;
 
     return (

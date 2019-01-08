@@ -82,7 +82,8 @@ Open app in a browser
 Open logs
 ```heroku logs```
 
-
+SSH into server
+```heroku run bash```
 
 
 

@@ -3,6 +3,12 @@
 Node with React: Fullstack Web Development
 [https://www.udemy.com/node-with-react-fullstack-web-development/](https://www.udemy.com/node-with-react-fullstack-web-development/)
 
+Server port: 5000
+Client port: 3000
+
+
+
+
 
 # mLab
 Using [mlab](https://mlab.com/home) for remote MongoDB hosting.
@@ -22,6 +28,12 @@ Database: emaily-prod416
 User: mike-prod
 Password: password1
 ```
+
+
+
+
+
+
 # Stripe
 Test Card: 4242 4242 4242 4242
 
@@ -56,6 +68,25 @@ If the file exports a class we use a capital letter for the first character.
 
 
 
+
+# Routes Available
+
+## Auth Routes
+GET /Auth/google                - login via Google OAUTH via passport.js
+GET /auth/google/callback       - callback required by passport.js auth flow, passport.js middleware handles auth
+GET /api/logout                 - logout, destroy session
+GET /api/current_user           - returns the user model
+
+## Billing Routes
+POST /api/stripe                - process stripe payment, uses requireLogin middleware
+
+## Survey Routes
+GET /api/surveys                - return a list of surveys user created
+POST /api/surveys/webhooks      - receive feedback from a user who clicked a link in the email
+POST /api/surveys               - create a new survey (requires 4 properties)
+
+
+
 # CLI Commands
 
 ## Nodemon
@@ -87,6 +118,10 @@ SSH into server
 
 Restart server
 ```heroku restart```
+
+
+
+
 
 
 

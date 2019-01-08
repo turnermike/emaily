@@ -12,7 +12,7 @@ require('./services/passport.js');
 // import express from 'express'           // example using ES2015 modules (node does not support)
 
 // connect to MongoDB via mongoose
-mongoose.connect(keys.mongoURI);
+mongoose.connect(keys.mongoURI, { useNewUrlParser: true});
 
 // create app object
 const app = express();

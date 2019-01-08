@@ -23,7 +23,9 @@ export const fetchUser = () => async dispatch => {
     dispatch({ type: FETCH_USER, payload: res.data });
 }
 
+// handle response from stripe
 export const handleToken = (token) => async dispatch => {
   const res = await axios.post('/api/stripe', token);
+  // update value in reducer
   dispatch({ type: FETCH_USER, payload: res.data });
 }

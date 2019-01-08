@@ -89,7 +89,7 @@ SSH into server
 
 # Production Deployments
 
-## Production Assets
+## Build Production Assets
 Use create-create-app's build.
 ```
 cd client

@@ -1,4 +1,5 @@
-// models/user.js
+// models/User.js
+// User Model Class
 
 const mongoose = require('mongoose');
 const { Schema } = mongoose; // use mongo Schema object

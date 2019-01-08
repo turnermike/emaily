@@ -1,13 +1,14 @@
-// middlewares/requireLogin.js
+// middlewares/requireCredits.js
 
-// confirm that a user has authenticated/logged in
+// confirm the user has enough credits to create a survey
 
 // a middleware takes an incomming request and has the ability to modify it
 // "next" passes the request to the next middleware in the chain
+
 module.exports = (req, res, next) => {
 
-  if(!req.user){
-    return res.status(401).send({ error: 'You must log in!' });
+  if(req.user.credits < 1){
+    return res.status(403).send({ error: 'Not enough credits!' });
   }
 
   // all good, continue with request handler

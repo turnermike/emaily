@@ -1,3 +1,5 @@
+// routes/authRoutes.js
+
 const passport = require('passport');
 
 // arrow function using express 'app' object

@@ -7,7 +7,8 @@ const cookieSession = require('cookie-session');
 const passport = require('passport');
 const bodyParser = require('body-parser'); // is express middleware
 const keys = require('./config/keys');
-require('./models/user');
+require('./models/User');
+require('./models/Survey');
 require('./services/passport.js');
 // import express from 'express'           // example using ES2015 modules (node does not support)
 
@@ -48,6 +49,8 @@ app.use(passport.session());
 require('./routes/authRoutes')(app);
 // load billing routes
 require('./routes/billingRoutes')(app);
+// load survey routes
+require('./routes/surveyRoutes')(app);
 
 // express production config
 if (process.env.NODE_ENV === 'production') {

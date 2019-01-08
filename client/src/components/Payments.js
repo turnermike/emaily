@@ -13,7 +13,7 @@ import * as actions from '../actions';
 class Payments extends Component {
   render() {
     // console.log('hit Payments.js render()');
-
+    console.log('Key', process.env.REACT_APP_STRIPE_KEY);
     // debugger;
 
     return (
@@ -23,7 +23,7 @@ class Payments extends Component {
         amount={500}
         token={token => this.props.handleToken(token)}
         // token={token => console.log('stripe token: ', token)}
-        stripeKey={process.env.STRIPE_SECRET_KEY}
+        stripeKey={process.env.REACT_APP_STRIPE_KEY}
       >
         <button className="btn">Add Credits</button>
       </StripeCheckout>

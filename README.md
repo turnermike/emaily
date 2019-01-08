@@ -85,6 +85,9 @@ Open logs
 SSH into server
 ```heroku run bash```
 
+Restart server
+```heroku restart```
+
 
 
 # Production Deployments

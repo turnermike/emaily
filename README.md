@@ -38,6 +38,15 @@ Password: password1
 Test Card: 4242 4242 4242 4242
 
 
+
+
+# Sendgrid
+Using Sendgrid NPM package for sending email:
+[https://github.com/sendgrid/sendgrid-nodejs/tree/master/packages/mail](https://github.com/sendgrid/sendgrid-nodejs/tree/master/packages/mail)
+
+
+
+
 # NPM Modules Used
 - passport.js
     - including a passport strategy for Goolge OAuth

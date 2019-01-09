@@ -21,16 +21,18 @@ module.exports = app => {
       subject,
       body,
 
+      // explaination of following line:
       // recipients.split(',')                        - returns an array of email address strings,
       // .map(email => { return { email: email }}     - for every email address return an object with the property email, to point to the email
 
       // before refactor
-      recipients: recipients.split(',').map(email => { return { email: email.trim() }});
+      recipients: recipients.split(',').map(email => { return { email: email.trim() }}),
 
       // after es6 refactor
       // key and value for the return object are the same ('email: email') which can be condensed to just 'email'
       // if body of the arrow function consists of a single expression, we can ommit the return keyword and outside curly braces
       // recipients: recipients.split(',').map(email => ({ email })),
+
       _user: req.user.id,
       dateSent: Date.now()
 

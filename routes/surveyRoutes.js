@@ -10,6 +10,11 @@ const Survey = mongoose.model('surveys');
 
 module.exports = app => {
 
+  app.get('/api/surveys/thanks', (req, res) => {
+    console.log('thanks route hit');
+    // res.send('Thanks for voting!');
+  });
+
   // create a new survey
   // using two middlewares to require login and that user has credits available
   app.post('/api/surveys', requireLogin, requireCredits, async (req, res) => {

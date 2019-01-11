@@ -79,7 +79,8 @@ If the file exports a class we use a capital letter for the first character.
 
 
 
-# Routes Available
+# Server Side Routes Available
+Managed via routes/*
 
 ## Auth Routes
 GET /Auth/google                - login via Google OAUTH via passport.js
@@ -95,6 +96,10 @@ GET /api/surveys                - return a list of surveys user created
 POST /api/surveys/webhooks      - receive feedback from a user who clicked a link in the email
 POST /api/surveys               - create a new survey (requires 4 properties)
 
+
+
+# Client Side Routes Available
+Managed via client/src/components/App.js
 
 
 # CLI Commands
@@ -154,5 +159,7 @@ npm run build
 
 
 
-
-
+Sublime exclude statement for Find/Replace:
+```
+/Users/mike/Sites/emaily,-/Users/mike/Sites/emaily/_FullstackReactCode/*,-/Users/mike/Sites/emaily/node_modules/*,-/Users/mike/Sites/emaily/client/node_modules/*, -/Users/mike/Sites/emaily/_sandbox/*
+```

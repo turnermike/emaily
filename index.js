@@ -55,6 +55,8 @@ require('./routes/surveyRoutes')(app);
 // express production config
 if (process.env.NODE_ENV === 'production') {
 
+  // console.log('IS PROD');
+
   // express will serve production assets, such as main.js or main.css
   // if any get request for a route cannot be found, look in client/build dir for that file
   app.use(express.static('client/build'));
@@ -66,6 +68,8 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
 
+}else{
+  // console.log('NOT PROD');
 }
 
 // use an environment variable for the port number

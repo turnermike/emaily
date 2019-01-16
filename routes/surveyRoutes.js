@@ -3,6 +3,8 @@
 const mongoose = require('mongoose');
 const requireLogin = require('../middlewares/requireLogin');
 const requireCredits = require('../middlewares/requireCredits');
+const Mailer = require('../services/Mailer');
+const surveyTemplate = require('../services/emailTemplates/surveyTemplate');
 
 const Survey = mongoose.model('surveys');
 
@@ -37,6 +39,29 @@ module.exports = app => {
       dateSent: Date.now()
 
     });
+
+    // init mailer
+    const mailer = new Mailer(survey, surveyTemplate(survey));
+
+    try {
+      // send email
+      await mailer.send();
+      // save the Survey model
+      await survey.save();                  // .save() is mongoose
+      // charge the user 1 credit
+      req.user.credits -= 1;
+      // save the update to user model andstore new user model to variable
+      const user = await req.user.save();
+
+      // send back with new user
+      res.send(user);
+
+    } catch (err) {
+
+      res.status(422).send(err);
+
+    }
+
 
   });
 

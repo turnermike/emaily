@@ -67,6 +67,10 @@ npm install --save mongoose
 sudo npm install -g create-react-app
 ```
 
+- redux-form
+```
+npm install --save redux-form
+
 
 
 

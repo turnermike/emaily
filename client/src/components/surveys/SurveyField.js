@@ -8,10 +8,17 @@ import React from 'react';
 // import { reduxForm, Field } from 'redux-form';
 
 
-export default () => {
+
+// input is ES6 destructuring of the props object, same as using props.input
+// ...input will pass all properties and values of input
+// for example, onBlur="", onChange="", input prop adds all callback functions
+
+
+export default ({ input }) => {
+  console.log(input);
   return (
     <div>
-      <input />
+      <input {...input} />
     </div>
   );
 };

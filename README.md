@@ -101,6 +101,9 @@ GET /api/surveys                - return a list of surveys user created
 POST /api/surveys/webhooks      - receive feedback from a user who clicked a link in the email
 POST /api/surveys               - create a new survey (requires 4 properties)
 
+GET /surveys                    - list surveys
+GET /surveys/new                - form to create a new survey
+
 
 
 # CLI Commands

@@ -14,10 +14,11 @@ import React from 'react';
 // for example, onBlur="", onChange="", input prop adds all callback functions
 
 
-export default ({ input }) => {
-  console.log(input);
+export default ({ input, label }) => {
+  // console.log(input);
   return (
     <div>
+      <label>{label}</label>
       <input {...input} />
     </div>
   );

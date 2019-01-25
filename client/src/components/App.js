@@ -9,10 +9,10 @@ import * as actions from '../actions';
 import SurveyNew from './surveys/SurveyNew';
 
 import Header from './Header';
-// import Dashboard from './Dashboard';
+import Dashboard from './Dashboard';
 import Landing from './Landing';
 
-const Dashboard = () => <h2>Dashboard</h2>;
+// const Dashboard = () => <h2>Dashboard</h2>;
 
 class App extends Component {
 
@@ -24,10 +24,10 @@ class App extends Component {
         return (
             <div className="container">
                 <BrowserRouter>
-                    <div>
+                    <div className="container">
                         <Header />
                         <Route exact path="/" component={Landing} />
-
+                        <Route exact path="/surveys" component={Dashboard} />
                         <Route path="/surveys/new" component={SurveyNew} />
                     </div>
                 </BrowserRouter>

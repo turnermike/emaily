@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';  // Link is used to route
 import SurveyField from './SurveyField';
 
 const FIELDS = [
-  { label: 'Survey Title', name: 'title' },
+  { label: 'Survey Title', name: 'title', noValueError: 'You must provide a title' },
   { label: 'Subject Line', name: 'subject' },
   { label: 'Email Body', name: 'body' },
   { label: 'Recipient List', name: 'emails' }
@@ -62,6 +62,50 @@ class SurveyForm extends Component {
 
 }
 
+// validate form data via redux form
+function validate(values) {
+
+  // console.log('values', values);
+
+  const errors = {};
+
+  _.each(FIELDS, ({ name, noValueError }) => {
+
+    if (!values[name]) {
+      // errors[name] = noValueError;
+      errors[name] = 'You must provide a value';
+    }
+
+  });
+
+  // if (!values.title) {
+  //   errors.title = "You must provide a title."; // redux form will pass this prop to the field
+  // }
+
+  // if (!values.subject) {
+  //   errors.subject = "You must provide a subject.";
+  // }
+
+  // if (!values.body) {
+  //   errors.body = "You must provide a body."
+  // }
+
+  return errors;
+
+}
+
 export default reduxForm({
+  validate,
   form: 'surveyForm'
 })(SurveyForm);
+
+
+
+
+
+
+
+
+
+
+

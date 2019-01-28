@@ -13,13 +13,18 @@ import React from 'react';
 // ...input will pass all properties and values of input
 // for example, onBlur="", onChange="", input prop adds all callback functions
 
+// { input, label, meta: {error, touched} } // es6 nested destructuring
 
-export default ({ input, label }) => {
+export default ({ input, label, meta: { error, touched } }) => {
   // console.log(input);
+  // console.log('meta', meta);
   return (
     <div>
       <label>{label}</label>
-      <input {...input} />
+      <input {...input} style={{ marginBottom: '5px' }} />
+      <div className="red-text" style={{ marginBottom: '20px' }}>
+        {touched && error}
+      </div>
     </div>
   );
 };

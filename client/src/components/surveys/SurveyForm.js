@@ -10,6 +10,7 @@ import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { Link } from 'react-router-dom';  // Link is used to route
 import SurveyField from './SurveyField';
+import validateEmails from '../../utils/validateEmails';
 
 const FIELDS = [
   { label: 'Survey Title', name: 'title', noValueError: 'You must provide a title' },
@@ -69,6 +70,10 @@ function validate(values) {
 
   const errors = {};
 
+  // validate email addresses
+  errors.emails = validateEmails(values.emails || '');
+
+  // checking for required fields
   _.each(FIELDS, ({ name, noValueError }) => {
 
     if (!values[name]) {
@@ -77,6 +82,7 @@ function validate(values) {
     }
 
   });
+
 
   // if (!values.title) {
   //   errors.title = "You must provide a title."; // redux form will pass this prop to the field

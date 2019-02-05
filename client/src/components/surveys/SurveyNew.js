@@ -29,7 +29,7 @@ class SurveyNew extends Component {
     // decide which component to display based on state.showFormReview value
     if(this.state.showFormReview === true) {
 
-      return <SurveyFormReview />;
+      return <SurveyFormReview onCancel={() => this.setState({ showFormReview: false })} />;
 
     }
 

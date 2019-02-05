@@ -101,8 +101,9 @@ function validate(values) {
 }
 
 export default reduxForm({
-  validate,
-  form: 'surveyForm'
+  validate,                 // calls validate function
+  form: 'surveyForm',       // a type of namespace for redux-form to referrence this specific form, accessible in component via state.form.surveyForm
+  destroyOnUnmount: false   // don't clear field values
 })(SurveyForm);
 
 

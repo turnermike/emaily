@@ -8,16 +8,10 @@ import React, { Component } from 'react';
 // reduxForm helper allows redux-form to communicate with redux store
 // Field helper for rendering any type of html form element (input, textarea, select, etc)
 import { reduxForm, Field } from 'redux-form';
-import { Link } from 'react-router-dom';  // Link is used to route
+import { Link } from 'react-router-dom';                  // Link is used to route
 import SurveyField from './SurveyField';
 import validateEmails from '../../utils/validateEmails';
-
-const FIELDS = [
-  { label: 'Survey Title', name: 'title', noValueError: 'You must provide a title' },
-  { label: 'Subject Line', name: 'subject' },
-  { label: 'Email Body', name: 'body' },
-  { label: 'Recipient List', name: 'emails' }
-];
+import formFields from './formFields';                    // importing a constant for field names and labels
 
 // this.props.handleSubmit is provided by reduxForm helper
 // arrow function is called automatically on submit
@@ -26,7 +20,7 @@ const FIELDS = [
 class SurveyForm extends Component {
 
   renderFields() {
-    return _.map(FIELDS, ({ label, name }) => {
+    return _.map(formFields, ({ label, name }) => {
       return (
         <Field key={name} component={SurveyField} type="text" label={label} name={name} />
       );
@@ -74,7 +68,7 @@ function validate(values) {
   errors.emails = validateEmails(values.emails || '');
 
   // checking for required fields
-  _.each(FIELDS, ({ name, noValueError }) => {
+  _.each(formFields, ({ name, noValueError }) => {
 
     if (!values[name]) {
       // errors[name] = noValueError;

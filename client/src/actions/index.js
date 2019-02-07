@@ -29,3 +29,8 @@ export const handleToken = (token) => async dispatch => {
   // update value in reducer
   dispatch({ type: FETCH_USER, payload: res.data });
 }
+
+// submit a new survey for creation
+export const submitSurvey = values => {
+  return { type: 'submit_survey' };
+};

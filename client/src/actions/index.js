@@ -1,4 +1,4 @@
-// fetchUser Action Creator using redux-thunk (AC returns an Action)
+ // fetchUser Action Creator using redux-thunk (AC returns an Action)
 // makes request to backend API to communicate with auth Reducer
 // to determin if user is logged in
 

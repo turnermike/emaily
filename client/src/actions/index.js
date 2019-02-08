@@ -1,4 +1,4 @@
- // fetchUser Action Creator using redux-thunk (AC returns an Action)
+// fetchUser Action Creator using redux-thunk (AC returns an Action)
 // makes request to backend API to communicate with auth Reducer
 // to determin if user is logged in
 
@@ -28,9 +28,14 @@ export const handleToken = (token) => async dispatch => {
   const res = await axios.post('/api/stripe', token);
   // update value in reducer
   dispatch({ type: FETCH_USER, payload: res.data });
-}
+};
 
 // submit a new survey for creation
-export const submitSurvey = values => {
-  return { type: 'submit_survey' };
+export const submitSurvey = values => async dispatch => {
+  // return { type: 'submit_survey' };
+
+  const res = await axios.post('/api/surveys', values);
+
+  dispatch({ type: FETCH_USER, payload: res.data });
+
 };

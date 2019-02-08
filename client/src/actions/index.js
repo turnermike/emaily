@@ -17,7 +17,7 @@ import { FETCH_USER } from './types';
 // same fetchUser function as above, only refactored
 // curly braces not required for a single statement
 export const fetchUser = () => async dispatch => {
-    // make request to server which returns a result
+    // make request to server which returns a response
     const res = await axios.get('/api/current_user');
     // what type of action are we going to dispatch
     dispatch({ type: FETCH_USER, payload: res.data });
@@ -31,11 +31,14 @@ export const handleToken = (token) => async dispatch => {
 };
 
 // submit a new survey for creation
-export const submitSurvey = values => async dispatch => {
-  // return { type: 'submit_survey' };
+export const submitSurvey = (values, history) => async dispatch => {
 
+  // post form data to api
   const res = await axios.post('/api/surveys', values);
 
+  history.push('/surveys');
+
+  // dipatch the action
   dispatch({ type: FETCH_USER, payload: res.data });
 
 };

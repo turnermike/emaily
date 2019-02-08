@@ -5,14 +5,16 @@
 
 import _ from 'lodash';
 import React from 'react';
-import { connect } from 'react-redux';    // used to pull data from redux store
-import formFields from './formFields';    // importing a constant for field names and labels
-import * as actions from '../../actions'; // importing action creators
+import { connect } from 'react-redux';          // used to pull data from redux store
+import formFields from './formFields';          // importing a constant for field names and labels
+import { withRouter } from 'react-router-dom';  // we export this component by wrapping it in withRouter(), giving it access to the props needed for routes
+import * as actions from '../../actions';       // importing action creators
 
 // props passes onCancel from SurveyNew renderConent function for SurveyFormReview component
 // props passes formValues from the mapStateToProps object
+// props passes history via withRouter() from the component, passed to submitSurvey action creator
 
-const SurveyFormReview = ({ onCancel, formValues, submitSurvey }) => {
+const SurveyFormReview = ({ onCancel, formValues, submitSurvey, history }) => {
 
   const reviewFields = _.map(formFields, ({ name, label }) => {
 
@@ -58,7 +60,7 @@ const SurveyFormReview = ({ onCancel, formValues, submitSurvey }) => {
 
       <button
         className="green white-text btn-flat right"
-        onClick={() => submitSurvey(formValues)}>
+        onClick={() => submitSurvey(formValues, history)}>
         Send Survey
         <i className="material-icons right">email</i>
       </button>
@@ -80,7 +82,7 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps, actions)(SurveyFormReview);
+export default connect(mapStateToProps, actions)(withRouter(SurveyFormReview));
 
 
 

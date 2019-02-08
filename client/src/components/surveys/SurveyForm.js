@@ -65,7 +65,7 @@ function validate(values) {
   const errors = {};
 
   // validate email addresses
-  errors.emails = validateEmails(values.emails || '');
+  errors.recipients = validateEmails(values.recipients || '');
 
   // checking for required fields
   _.each(formFields, ({ name, noValueError }) => {

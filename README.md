@@ -51,6 +51,16 @@ Using Sendgrid NPM package for sending email:
 
 
 
+# Localtunnel
+Allows us to use a localhost for development builds.
+`random-string-of-chars.localtunnel.me > localhost:5000`
+
+[https://localtunnel.github.io/www/](https://localtunnel.github.io/www/)
+
+
+
+
+
 
 # NPM Modules Used
 - passport.js

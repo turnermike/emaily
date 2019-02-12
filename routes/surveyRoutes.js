@@ -72,5 +72,11 @@ module.exports = app => {
 
   });
 
+  // sendgrid event tracking
+  app.post('/api/surveys/webhooks', (req, res) => {
+    console.log('/api/surveys/webhooks', req.body);
+    res.send({});
+  });
+
 
 };

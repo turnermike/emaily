@@ -15,7 +15,18 @@ module.exports = app => {
 
     res.send('Thanks for voting!');
 
-  })
+  });
+
+  app.post('/api/surveys/test', (req, res) => {
+    res.send('/api/surveys/test');
+  });
+
+  // sendgrid event tracking
+  app.post('/api/surveys/webhooks', (req, res) => {
+    console.log(req.body);
+    // res.send({});
+    res.send('Testing');
+  });
 
   // create a new survey email and send it
   // using two middlewares to require login and that user has credits available
@@ -72,12 +83,7 @@ module.exports = app => {
 
   });
 
-  // sendgrid event tracking
-  app.post('/api/surveys/webhooks', (req, res) => {
-    // console.log('/api/surveys/webhooks', req.body);
-    console.log(req.body);
-    res.send({});
-  });
+
 
 
 };

@@ -1,3 +1,5 @@
+// /client/src/components/App.js
+
 // configure react router
 // all routing logic for application setup here
 

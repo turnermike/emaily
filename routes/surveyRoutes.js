@@ -1,5 +1,8 @@
 // routes/surveyRoutes.js
 
+const _ = require('lodash');
+const Path = require('path-parser');
+const { URL } = require('url');   // included with node
 const mongoose = require('mongoose');
 const requireLogin = require('../middlewares/requireLogin');
 const requireCredits = require('../middlewares/requireCredits');
@@ -23,9 +26,23 @@ module.exports = app => {
 
   // sendgrid event tracking
   app.post('/api/surveys/webhooks', (req, res) => {
+
+    // const events = _.map(req.body, (event) => {
+
+    //   // extract the route/pathname from the url
+    //   const pathname = new URL(event.url).pathname;
+    //   // create a path-parser object
+    //   // pass a string or pattern that we would like to extract
+    //   const p = new Path('/api/surveys/:surveyId/:choice');
+
+    //   console.log('pathname', p.test(pathname));
+
+    // });
+
     console.log(req.body);
+
     // res.send({});
-    res.send('Testing');
+    // res.send('Testing');
   });
 
   // create a new survey email and send it

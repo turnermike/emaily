@@ -24,8 +24,8 @@ module.exports = app => {
   // sendgrid event tracking
   app.post('/api/surveys/webhooks', (req, res) => {
     console.log(req.body);
-    // res.send({});
-    res.send('Testing');
+    res.send({});
+    // res.send('Testing');
   });
 
   // create a new survey email and send it

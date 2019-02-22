@@ -36,8 +36,6 @@ Password: password1
 
 
 
-
-
 # Stripe
 Test Card: 4242 4242 4242 4242
 
@@ -49,6 +47,11 @@ Using Sendgrid NPM package for sending email:
 [https://github.com/sendgrid/sendgrid-nodejs/tree/master/packages/mail](https://github.com/sendgrid/sendgrid-nodejs/tree/master/packages/mail)
 
 
+
+
+# Local Tunnel
+Used for handling webhooks in our local environment. Forwards a request to one of their URLs to a localhost domain.
+[https://localtunnel.github.io/www/](https://localtunnel.github.io/www/)
 
 
 

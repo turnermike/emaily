@@ -17,6 +17,11 @@ module.exports = app => {
 
   })
 
+  app.post('/api/surveys/webhooks', (req, res) => {
+    console.log(req.body);
+    res.send({});
+  });
+
   // create a new survey email and send it
   // using two middlewares to require login and that user has credits available
   app.post('/api/surveys', requireLogin, requireCredits, async (req, res) => {

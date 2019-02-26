@@ -94,21 +94,22 @@ If the file exports a class we use a capital letter for the first character.
 # Routes Available
 
 ## Auth Routes
-GET /Auth/google                - login via Google OAUTH via passport.js
-GET /auth/google/callback       - callback required by passport.js auth flow, passport.js middleware handles auth
-GET /api/logout                 - logout, destroy session
-GET /api/current_user           - returns the user model
+GET /Auth/google                        - login via Google OAUTH via passport.js
+GET /auth/google/callback               - callback required by passport.js auth flow, passport.js middleware handles auth
+GET /api/logout                         - logout, destroy session
+GET /api/current_user                   - returns the user model
 
 ## Billing Routes
-POST /api/stripe                - process stripe payment, uses requireLogin middleware
+POST /api/stripe                        - process stripe payment, uses requireLogin middleware
 
 ## Survey Routes
-GET /api/surveys                - return a list of surveys user created
-POST /api/surveys/webhooks      - receive feedback from a user who clicked a link in the email
-POST /api/surveys               - create a new survey (requires 4 properties)
+GET /api/surveys                        - return a list of surveys user created
+POST /api/surveys/webhooks              - receive feedback from a user who clicked a link in the email
+POST /api/surveys                       - create a new survey (requires 4 properties)
+POST /api/surveys/:surveyId/:choice     - used by Sendgrid webhook for survey click selection
 
-GET /surveys                    - list surveys
-GET /surveys/new                - form to create a new survey
+GET /surveys                            - list surveys
+GET /surveys/new                        - form to create a new survey
 
 
 

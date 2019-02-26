@@ -20,6 +20,7 @@ module.exports = app => {
   app.post('/api/surveys/webhooks', (req, res) => {
     console.log(req.body);
     res.send({});
+
   });
 
   // create a new survey email and send it

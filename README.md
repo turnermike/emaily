@@ -15,7 +15,7 @@ Client port: 3000
 
 
 # mLab
-Using [mlab](https://mlab.com/home) for remote MongoDB hosting.
+Started tutorial using [mlab](https://mlab.com/home) for remote MongoDB hosting. Since then, Atlas had aquired mlab, now using Atlas.
 
 Dev: `mongodb://mike:password1@ds147233.mlab.com:47233/emaily-dev`
 ```
@@ -33,6 +33,10 @@ User: mike-prod
 Password: password1
 ```
 
+
+# Atlas
+
+Dev: `mongodb://mike:NxjUgTIqbZwJsK7LIoaBs@emaily-bpjar.mongodb.net/emaily`
 
 
 

@@ -11,6 +11,7 @@ const Survey = mongoose.model('surveys');
 module.exports = app => {
 
   app.get('/api/thanks', (req, res) => {
+<<<<<<< HEAD
     // console.log('Thanks for voting!');
     res.send('Thanks for voting!');
   });
@@ -18,6 +19,21 @@ module.exports = app => {
 
 
   // create a new survey
+=======
+  // app.get('/api/surveys/thanks', (req, res) => {
+
+    res.send('Thanks for voting!');
+
+  })
+
+  app.post('/api/surveys/webhooks', (req, res) => {
+    console.log(req.body);
+    res.send({});
+
+  });
+
+  // create a new survey email and send it
+>>>>>>> db-move-atlas
   // using two middlewares to require login and that user has credits available
   app.post('/api/surveys', requireLogin, requireCredits, async (req, res) => {
 
@@ -69,6 +85,11 @@ module.exports = app => {
 
     }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> db-move-atlas
   });
+
 
 };

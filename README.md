@@ -24,9 +24,6 @@ User: mike
 Password: password1
 ```
 
-# Dump dev
-`mongodump -h ds147233.mlab.com:47233 -d emaily-dev -u mike -p password1 -o ./_db_dumps`
-
 Prod: `mongodb://mikeprod:password1@ds155073.mlab.com:55073/emaily-prod416`
 ```
 Host: ds155073.mlab.com
@@ -35,16 +32,15 @@ Database: emaily-prod416
 User: mikeprod
 Password: password1
 ```
-# Dump production
-`mongodump -h ds155073.mlab.com:55073 -d emaily-prod416 -u mikeprod -p password1 -o ./_db_dumps`
+
+
 
 
 # Atlas
 
-Dev: `mongodb://mike:NxjUgTIqbZwJsK7LIoaBs@emaily-bpjar.mongodb.net/emaily`
+Dev: `mongodb+srv://mike:NxjUgTIqbZwJsK7LIoaBs@emaily-bpjar.mongodb.net/emaily-dev?retryWrites=true`
+Prod: `mongodb+srv://mike:NxjUgTIqbZwJsK7LIoaBs@emaily-bpjar.mongodb.net/emaily-prod?retryWrites=true`
 
-
-mongorestore --host Emaily-shard-0/emaily-shard-00-00-bpjar.mongodb.net:27017,emaily-shard-00-01-bpjar.mongodb.net:27017,emaily-shard-00-02-bpjar.mongodb.net:27017 --ssl --username mike --password NxjUgTIqbZwJsK7LIoaBs --authenticationDatabase admin
 
 
 

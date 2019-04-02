@@ -1,5 +1,7 @@
 // routes/surveyRoutes.js
-
+const _ = require('lodash');
+const Path = require('path-parser');
+const { URL } = require('url');
 const mongoose = require('mongoose');
 const requireLogin = require('../middlewares/requireLogin');
 const requireCredits = require('../middlewares/requireCredits');
@@ -21,8 +23,19 @@ module.exports = app => {
   })
 
   app.post('/api/surveys/webhooks', (req, res) => {
-    console.log(req.body);
-    res.send({});
+    // console.log(req.body);
+    // res.send({});
+
+    const events = _.map(req.body, (event) => {
+      // extract url paths
+      const pathname = new URL(event.url).pathname;
+      // create object of url paths
+      const p = new Path('/api/surveys/:surveyId/:choice');
+      // console.log(p.test(pathname));
+      // console.log('hi');
+
+    });
+
 
   });
 

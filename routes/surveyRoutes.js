@@ -10,6 +10,9 @@ const Survey = mongoose.model('surveys');
 
 module.exports = app => {
 
+  // ---
+  // might be old and unneccessary
+  // ---
   app.get('/api/thanks', (req, res) => {
   // app.get('/api/surveys/thanks', (req, res) => {
 

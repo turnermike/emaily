@@ -12,9 +12,17 @@ Client port: 3000
 
 
 
+# Atlas
+
+Dev: `mongodb+srv://mike:NxjUgTIqbZwJsK7LIoaBs@emaily-bpjar.mongodb.net/emaily-dev?retryWrites=true`
+Prod: `mongodb+srv://mike:NxjUgTIqbZwJsK7LIoaBs@emaily-bpjar.mongodb.net/emaily-prod?retryWrites=true`
+
+
 
 
 # mLab
+Durring the second last section of the tutorial mLabs was aquired by MongoDB Atlas. Now using Altas, this is here for record keeping.
+
 Started tutorial using [mlab](https://mlab.com/home) for remote MongoDB hosting. Since then, Atlas had aquired mlab, now using Atlas.
 
 Dev: `mongodb://mike:password1@ds147233.mlab.com:47233/emaily-dev`
@@ -36,14 +44,6 @@ Password: password1
 
 
 
-# Atlas
-
-Dev: `mongodb+srv://mike:NxjUgTIqbZwJsK7LIoaBs@emaily-bpjar.mongodb.net/emaily-dev?retryWrites=true`
-Prod: `mongodb+srv://mike:NxjUgTIqbZwJsK7LIoaBs@emaily-bpjar.mongodb.net/emaily-prod?retryWrites=true`
-
-
-
-
 # Stripe
 Test Card: 4242 4242 4242 4242
 
@@ -53,9 +53,6 @@ Test Card: 4242 4242 4242 4242
 # Sendgrid
 Using Sendgrid NPM package for sending email:
 [https://github.com/sendgrid/sendgrid-nodejs/tree/master/packages/mail](https://github.com/sendgrid/sendgrid-nodejs/tree/master/packages/mail)
-
-
-
 
 # Local Tunnel
 Used for handling webhooks in our local environment. Forwards a request to one of their URLs to a localhost domain.

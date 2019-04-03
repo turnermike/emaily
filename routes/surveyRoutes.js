@@ -1,6 +1,6 @@
 // routes/surveyRoutes.js
 const _ = require('lodash');
-const Path = require('path-parser');
+const { Path } = require('path-parser');
 const { URL } = require('url');
 const mongoose = require('mongoose');
 const requireLogin = require('../middlewares/requireLogin');
@@ -26,13 +26,13 @@ module.exports = app => {
     // console.log(req.body);
     // res.send({});
 
-    const events = _.map(req.body, (event) => {
+    const events = _.map(req.body, (event) => { // iterate the events object
       // extract url paths
       const pathname = new URL(event.url).pathname;
-      // create object of url paths
+      // create parser object of url paths
       const p = new Path('/api/surveys/:surveyId/:choice');
-      // console.log(p.test(pathname));
-      // console.log('hi');
+      console.log(p.test(pathname));
+      console.log('hi');
 
     });
 

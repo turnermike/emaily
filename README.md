@@ -58,6 +58,9 @@ Using Sendgrid NPM package for sending email:
 Used for handling webhooks in our local environment. Forwards a request to one of their URLs to a localhost domain.
 [https://localtunnel.github.io/www/](https://localtunnel.github.io/www/)
 
+From time to time the node process for localtunnel will not exit. Use the following to restart node:
+`killall node`
+
 
 
 # NPM Modules Used

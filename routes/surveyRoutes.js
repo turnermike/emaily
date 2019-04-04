@@ -31,8 +31,9 @@ module.exports = app => {
       const pathname = new URL(event.url).pathname;
       // create parser object of url paths
       const p = new Path('/api/surveys/:surveyId/:choice');
+      console.log('------------------------');
       console.log(p.test(pathname));
-      console.log('hi');
+      console.log('------------------------');
 
     });
 

@@ -26,14 +26,31 @@ module.exports = app => {
     // console.log(req.body);
     // res.send({});
 
-    const events = _.map(req.body, (event) => { // iterate the events object
+    // const events = _.map(req.body, (event) => { // iterate the events object
+    const events = _.map(req.body, ({ email, url }) => { // iterate the events object
       // extract url paths
-      const pathname = new URL(event.url).pathname;
+      // const pathname = new URL(event.url).pathname;
+      const pathname = new URL(url).pathname;
       // create parser object of url paths
       const p = new Path('/api/surveys/:surveyId/:choice');
+
+      // console.log(new Date().toLocaleString() + '------------------------');
+      // console.log(p.test(pathname));
+      // console.log('------------------------');
+
+      const match = p.test(pathname);
+
+      if(match){
+        // return { email: event.email, surveyId: p.surveyId, choice: match.choice }
+        return { email, surveyId: p.surveyId, choice: match.choice }
+
+      }
+
       console.log(new Date().toLocaleString() + '------------------------');
-      console.log(p.test(pathname));
+      console.log(events);
       console.log('------------------------');
+
+
 
     });
 

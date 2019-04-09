@@ -27,29 +27,30 @@ module.exports = app => {
     // res.send({});
 
     // const events = _.map(req.body, (event) => { // iterate the events object
-    const events = _.map(req.body, ({ email, url }) => { // iterate the events object
-      // extract url paths
-      // const pathname = new URL(event.url).pathname;
-      const pathname = new URL(url).pathname;
-      // create parser object of url paths
-      const p = new Path('/api/surveys/:surveyId/:choice');
+    const events = _.map(req.body, ({ email, url }) => {                    // destructuring the 'event' object, we only need url/email
 
-      // console.log(new Date().toLocaleString() + '------------------------');
-      // console.log(p.test(pathname));
-      // console.log('------------------------');
+      const pathname = new URL(url).pathname;                               // extract url paths
 
-      const match = p.test(pathname);
+      const p = new Path('/api/surveys/:surveyId/:choice');                 // create parser object of url paths
 
-      if(match){
-        // return { email: event.email, surveyId: p.surveyId, choice: match.choice }
-        return { email, surveyId: p.surveyId, choice: match.choice }
-
-      }
-
-      console.log(new Date().toLocaleString() + '------------------------');
-      console.log(events);
+      console.log('--- ' + new Date().toLocaleString() + ' ---');
+      // console.log(event);
+      console.log('url: ', url);
+      console.log('email: ', email);
+      console.log(p.test(pathname));
       console.log('------------------------');
 
+      const match = p.test(pathname);                                       // test the URL based on Path
+
+      if(match){
+        return { email, surveyId: match.surveyId, choice: match.choice }
+      }
+
+      // console.log(new Date().toLocaleString() + '------------------------');
+      // console.log(events);
+      // console.log('------------------------');
+
+      // res.send('webhooks response here');
 
 
     });

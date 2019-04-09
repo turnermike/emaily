@@ -9,11 +9,15 @@ GitHub Repo:
 Server port: 5000
 Client port: 3000
 
+Helpful Links:
 
+*Serveo as a LocalTunnel Alternative*
+LocalTunnel was used in the original tutorial as a proxy to make the local server public.
+That project has since been halted and we're now using [Serveo](https://serveo.net/).
+[https://www.udemy.com/node-with-react-fullstack-web-development/learn/v4/questions/4582134](https://www.udemy.com/node-with-react-fullstack-web-development/learn/v4/questions/4582134)
 
 
 # Atlas
-
 Dev: `mongodb+srv://mike:NxjUgTIqbZwJsK7LIoaBs@emaily-bpjar.mongodb.net/emaily-dev?retryWrites=true`
 Prod: `mongodb+srv://mike:NxjUgTIqbZwJsK7LIoaBs@emaily-bpjar.mongodb.net/emaily-prod?retryWrites=true`
 

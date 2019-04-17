@@ -23,11 +23,16 @@ module.exports = app => {
   })
 
   app.post('/api/surveys/webhooks', (req, res) => {
-    // console.log(req.body);
-    // res.send({});
 
+    // log the entire event when testing via Sendgrid "Test Your Integration" button
+    // not all events have a email or url property, which will result in an error
     // const events = _.map(req.body, (event) => { // iterate the events object
+    //   console.log(event);
+    // });
+
     const events = _.map(req.body, ({ email, url }) => {                    // destructuring the 'event' object, we only need url/email
+
+      // console.log(event);
 
       const pathname = new URL(url).pathname;                               // extract url paths
 

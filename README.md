@@ -11,10 +11,15 @@ Client port: 3000
 
 Helpful Links:
 
-*Serveo as a LocalTunnel Alternative*
+* Serveo as a LocalTunnel Alternative *
 LocalTunnel was used in the original tutorial as a proxy to make the local server public.
 That project has since been halted and we're now using [Serveo](https://serveo.net/).
 [https://www.udemy.com/node-with-react-fullstack-web-development/learn/v4/questions/4582134](https://www.udemy.com/node-with-react-fullstack-web-development/learn/v4/questions/4582134)
+
+* ngrok as LocalTunnel Alternative *
+[https://ngrok.com/download](https://ngrok.com/download)
+[https://www.udemy.com/node-with-react-fullstack-web-development/learn/v4/questions/3213122](https://www.udemy.com/node-with-react-fullstack-web-development/learn/v4/questions/3213122)
+
 
 
 # Atlas
@@ -131,6 +136,15 @@ GET /surveys/new                        - form to create a new survey
 Run node and auto refresh on save.
 ```
 npm run dev
+```
+
+## ngrok
+Using ngrok as a backup for Serveo.
+
+Expose localhost to public url.
+
+```
+ngrok http 5000
 ```
 
 ## Heroku

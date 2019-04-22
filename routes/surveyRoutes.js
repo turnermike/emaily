@@ -30,33 +30,43 @@ module.exports = app => {
     //   console.log(event);
     // });
 
-    const events = _.map(req.body, ({ email, url }) => {                    // destructuring the 'event' object, we only need url/email
+    const p = new Path('/api/surveys/:surveyId/:choice');                 // create parser object of url paths
 
-      // console.log(event);
+    // const events = _.map(req.body, ({ email, url }) => {                    // destructuring the 'event' object, we only need url/email
 
-      const pathname = new URL(url).pathname;                               // extract url paths
+    //     // const pathname = new URL(url).pathname;                               // create path helper outside of map function
+    //     // const match = p.test(pathname);                                       // test the URL based on Path
+    //   const match = p.test(new URL(url).pathname);                             // refactored the previous two lines
 
-      const p = new Path('/api/surveys/:surveyId/:choice');                 // create parser object of url paths
+    //   if(match){
+    //     return { email, surveyId: match.surveyId, choice: match.choice }
+    //   }
 
-      // console.log(new Date().toLocaleString() + '------------------------');
-      // console.log('url: ', url);
-      // console.log('email: ', email);
-      // console.log(p.test(pathname));
-      // console.log('------------------------');
+    // });
 
-      const match = p.test(pathname);                                       // test the URL based on Path
+    // const compactEvents = _.compact(events);                                // lodash compact() helper will remove undefined elements
+    // const uniqueEvents = _.uniqBy(compactEvents, 'email', 'surveyId');      // lodash uniqueBy() helper will remove any duplicates with same email and surveyId
 
-      if(match){
-        return { email, surveyId: match.surveyId, choice: match.choice }
-      }
+    // refactord map function using lodash .chain helper
 
-    });
+    const events = _.chain(req.body)
+      .map(({ email, url }) => {                    // destructuring the 'event' object, we only need url/email
 
-    const compactEvents = _.compact(events);                                // lodash compact() helper will remove undefined elements
-    const uniqueEvents = _.uniqBy(compactEvents, 'email', 'surveyId');      // lodash uniqueBy() helper will remove any duplicates with same email and surveyId
+          // const pathname = new URL(url).pathname;                               // create path helper outside of map function
+          // const match = p.test(pathname);                                       // test the URL based on Path
+        const match = p.test(new URL(url).pathname);                             // refactored the previous two lines
 
-    console.log(new Date().toLocaleString() + '------------------------');
-    console.log(uniqueEvents);
+        if(match){
+          return { email, surveyId: match.surveyId, choice: match.choice }
+        }
+
+      })
+
+      .compact()                                // lodash compact() helper will remove undefined elements
+      .uniqBy('email', 'surveyId')      // lodash uniqueBy() helper will remove any duplicates with same email and surveyId
+
+    console.log(new Date().toLocaleString() + ' -- unique event ----------------------');
+    console.log(events);
     console.log('------------------------');
 
     res.send({});                                                           // send a webhook response to sendgrid, or the webhook requests will continue

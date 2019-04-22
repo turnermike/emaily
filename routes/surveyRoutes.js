@@ -50,6 +50,7 @@ module.exports = app => {
     // refactord map function using lodash .chain helper
 
     const events = _.chain(req.body)
+
       .map(({ email, url }) => {                    // destructuring the 'event' object, we only need url/email
 
           // const pathname = new URL(url).pathname;                               // create path helper outside of map function
@@ -63,7 +64,8 @@ module.exports = app => {
       })
 
       .compact()                                // lodash compact() helper will remove undefined elements
-      .uniqBy('email', 'surveyId')      // lodash uniqueBy() helper will remove any duplicates with same email and surveyId
+      .uniqBy('email', 'surveyId')              // lodash uniqueBy() helper will remove any duplicates with same email and surveyId
+      .value();                                 // lodash value() pull the underlining/remaining array
 
     console.log(new Date().toLocaleString() + ' -- unique event ----------------------');
     console.log(events);

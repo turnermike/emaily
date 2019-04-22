@@ -1,4 +1,4 @@
-// routes/surveyRoutes.js
+  // routes/surveyRoutes.js
 const _ = require('lodash');
 const { Path } = require('path-parser');
 const { URL } = require('url');
@@ -38,12 +38,11 @@ module.exports = app => {
 
       const p = new Path('/api/surveys/:surveyId/:choice');                 // create parser object of url paths
 
-      console.log('--- ' + new Date().toLocaleString() + ' ---');
-      // console.log(event);
-      console.log('url: ', url);
-      console.log('email: ', email);
-      console.log(p.test(pathname));
-      console.log('------------------------');
+      // console.log(new Date().toLocaleString() + '------------------------');
+      // console.log('url: ', url);
+      // console.log('email: ', email);
+      // console.log(p.test(pathname));
+      // console.log('------------------------');
 
       const match = p.test(pathname);                                       // test the URL based on Path
 
@@ -51,14 +50,17 @@ module.exports = app => {
         return { email, surveyId: match.surveyId, choice: match.choice }
       }
 
-      // console.log(new Date().toLocaleString() + '------------------------');
-      // console.log(events);
-      // console.log('------------------------');
-
-      // res.send('webhooks response here');
-
-
     });
+
+    const compactEvents = _.compact(events);                                // lodash compact() helper will remove undefined elements
+    const uniqueEvents = _.uniqBy(compactEvents, 'email', 'surveyId');      // lodash uniqueBy() helper will remove any duplicates with same email and surveyId
+
+    console.log(new Date().toLocaleString() + '------------------------');
+    console.log(uniqueEvents);
+    console.log('------------------------');
+
+    res.send({});                                                           // send a webhook response to sendgrid, or the webhook requests will continue
+
 
 
   });

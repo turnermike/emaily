@@ -46,7 +46,8 @@ module.exports = app => {
     // const uniqueEvents = _.uniqBy(compactEvents, 'email', 'surveyId');         // lodash uniqueBy() helper will remove any duplicates with same email and surveyId
 
     // refactord map function using lodash .chain helper
-    const events = _.chain(req.body)
+    // const events = _.chain(req.body)
+    _.chain(req.body)
 
       .map(({ email, url }) => {
         // destructuring the 'event' object, we only need url/email
@@ -62,13 +63,28 @@ module.exports = app => {
 
       .compact() // lodash compact() helper will remove undefined elements
       .uniqBy('email', 'surveyId') // lodash uniqueBy() helper will remove any duplicates with same email and surveyId
+
+      .each(({ surveyId, email, choice }) => {
+
+        Survey.updateOne({
+          _id: surveyId,
+          recipients: {
+            $elemMatch: { email: email, responded: false }
+          }
+        }, {
+          $inc: { [choice]: 1 },  // $inc: increment
+          $set: { 'recipients.$.responded': true }
+        }).exec();
+
+      }) // run over every element in the array (each event in the array)
+
       .value(); // lodash value() pull the underlining/remaining array
 
-    console.log(
-      new Date().toLocaleString() + ' -- unique event ----------------------'
-    );
-    console.log(events);
-    console.log('------------------------');
+    // console.log(
+    //   new Date().toLocaleString() + ' -- unique event ----------------------'
+    // );
+    // console.log(events);
+    // console.log('------------------------');
 
     res.send({}); // send a webhook response to sendgrid, or the webhook requests will continue
   });

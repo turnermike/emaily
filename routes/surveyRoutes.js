@@ -26,9 +26,9 @@ module.exports = app => {
 
   });
 
-  // app.get('/api/surveys/thanks', (req, res) => {
-  //     res.send('Thanks! /api/surveys/test');
-  // });
+  app.get('/api/surveys/thanks', (req, res) => {
+      res.send('Thanks! /api/surveys/test');
+  });
 
   // sendgrid webhook for processing email click tracking
   app.post('/api/surveys/webhooks', (req, res) => {

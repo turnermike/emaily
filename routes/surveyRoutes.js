@@ -1,4 +1,11 @@
-// routes/surveyRoutes.js
+/**
+ * routes/surveyRoutes.js
+ *
+ * Handle survey routing.
+ *
+ * Note: New routes added here will need to be added to the proxy file client/src/setupProxy.js
+ *
+ */
 const _ = require('lodash');
 const { Path } = require('path-parser');
 const { URL } = require('url');
@@ -11,15 +18,19 @@ const surveyTemplate = require('../services/emailTemplates/surveyTemplate');
 const Survey = mongoose.model('surveys');
 
 module.exports = app => {
-  // ---
-  // might be old and unneccessary
-  // ---
-  app.get('/api/thanks', (req, res) => {
-    // app.get('/api/surveys/thanks', (req, res) => {
+
+  app.get('/api/surveys/:surveyId/:choice', (req, res) => {
 
     res.send('Thanks for voting!');
+    // res.send('surveyId: ' + req.params.surveyId + '<br />choice: ' + req.params.choice);
+
   });
 
+  app.get('/api/surveys/thanks', (req, res) => {
+      res.send('Thanks! /api/surveys/test');
+  });
+
+  // sendgrid webhook for processing email click tracking
   app.post('/api/surveys/webhooks', (req, res) => {
     // use this when testing with Sendgrid
     // log the entire event when testing via Sendgrid "Test Your Integration" button
@@ -73,7 +84,8 @@ module.exports = app => {
           }
         }, {
           $inc: { [choice]: 1 },  // $inc: increment
-          $set: { 'recipients.$.responded': true }
+          $set: { 'recipients.$.responded': true },
+          lastResponded: new Date()
         }).exec();
 
       }) // run over every element in the array (each event in the array)
@@ -87,6 +99,7 @@ module.exports = app => {
     // console.log('------------------------');
 
     res.send({}); // send a webhook response to sendgrid, or the webhook requests will continue
+
   });
 
   // create a new survey email and send it
@@ -137,5 +150,7 @@ module.exports = app => {
     } catch (err) {
       res.status(422).send(err);
     }
+
   });
+
 };

@@ -26,6 +26,9 @@ That project has since been halted and we're now using [Serveo](https://serveo.n
 Dev: `mongodb+srv://mike:NxjUgTIqbZwJsK7LIoaBs@emaily-bpjar.mongodb.net/emaily-dev?retryWrites=true`
 Prod: `mongodb+srv://mike:NxjUgTIqbZwJsK7LIoaBs@emaily-bpjar.mongodb.net/emaily-prod?retryWrites=true`
 
+## Mongo Shell
+Dev: `mongo "mongodb+srv://emaily-bpjar.mongodb.net/test" --username mike`
+
 
 
 

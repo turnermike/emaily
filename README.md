@@ -22,17 +22,21 @@ That project has since been halted and we're now using [Serveo](https://serveo.n
 
 
 
-# Atlas
+# Quirks/Notes
+
+From time to time the node process for localtunnel will not exit. Use the following to restart node:
+`killall node`
+
+
+
+# MongoDB Atlas or to connect via MongoDB Compass
 Dev: `mongodb+srv://mike:NxjUgTIqbZwJsK7LIoaBs@emaily-bpjar.mongodb.net/emaily-dev?retryWrites=true`
 Prod: `mongodb+srv://mike:NxjUgTIqbZwJsK7LIoaBs@emaily-bpjar.mongodb.net/emaily-prod?retryWrites=true`
 
-## Mongo Shell
+### Mongo Shell
 Dev: `mongo "mongodb+srv://emaily-bpjar.mongodb.net/test" --username mike`
 
-
-
-
-# mLab
+### mLab (old)
 Durring the second last section of the tutorial mLabs was aquired by MongoDB Atlas. Now using Altas, this is here for record keeping.
 
 Started tutorial using [mlab](https://mlab.com/home) for remote MongoDB hosting. Since then, Atlas had aquired mlab, now using Atlas.
@@ -55,10 +59,8 @@ Password: password1
 
 
 
-
 # Stripe
 Test Card: 4242 4242 4242 4242
-
 
 
 
@@ -66,12 +68,11 @@ Test Card: 4242 4242 4242 4242
 Using Sendgrid NPM package for sending email:
 [https://github.com/sendgrid/sendgrid-nodejs/tree/master/packages/mail](https://github.com/sendgrid/sendgrid-nodejs/tree/master/packages/mail)
 
-# Local Tunnel
-Used for handling webhooks in our local environment. Forwards a request to one of their URLs to a localhost domain.
-[https://localtunnel.github.io/www/](https://localtunnel.github.io/www/)
 
-From time to time the node process for localtunnel will not exit. Use the following to restart node:
-`killall node`
+
+# Serveo
+Used for handling webhooks in our local environment. Forwards a request to one of their URLs to a localhost domain.
+[https://serveo.net/](https://serveo.net/)
 
 
 
@@ -96,8 +97,7 @@ sudo npm install -g create-react-app
 - redux-form
 ```
 npm install --save redux-form
-
-
+```
 
 
 
@@ -106,8 +106,6 @@ npm install --save redux-form
 ## Files
 If the file exports a function we use a lowercase letter for the first character.
 If the file exports a class we use a capital letter for the first character.
-
-
 
 
 
@@ -145,9 +143,14 @@ npm run dev
 Using ngrok as a backup for Serveo.
 
 Expose localhost to public url.
-
 ```
 ngrok http 5000
+```
+
+## node
+Kill running processes.
+```
+killall node
 ```
 
 ## Heroku
@@ -173,10 +176,6 @@ SSH into server
 
 Restart server
 ```heroku restart```
-
-
-
-
 
 
 

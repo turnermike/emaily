@@ -1,5 +1,14 @@
-// routes/surveyRoutes.js
-
+/**
+ * routes/surveyRoutes.js
+ *
+ * Handle survey routing.
+ *
+ * Note: New routes added here will need to be added to the proxy file client/src/setupProxy.js
+ *
+ */
+const _ = require('lodash');
+const { Path } = require('path-parser');
+const { URL } = require('url');
 const mongoose = require('mongoose');
 const requireLogin = require('../middlewares/requireLogin');
 const requireCredits = require('../middlewares/requireCredits');
@@ -10,23 +19,92 @@ const Survey = mongoose.model('surveys');
 
 module.exports = app => {
 
-  app.get('/api/thanks', (req, res) => {
-  // app.get('/api/surveys/thanks', (req, res) => {
+  app.get('/api/surveys/:surveyId/:choice', (req, res) => {
 
     res.send('Thanks for voting!');
+    // res.send('surveyId: ' + req.params.surveyId + '<br />choice: ' + req.params.choice);
 
-  })
+  });
 
+  app.get('/api/surveys/thanks', (req, res) => {
+      res.send('Thanks! /api/surveys/test');
+  });
+
+  // sendgrid webhook for processing email click tracking
   app.post('/api/surveys/webhooks', (req, res) => {
-    console.log(req.body);
-    res.send({});
+    // use this when testing with Sendgrid
+    // log the entire event when testing via Sendgrid "Test Your Integration" button
+    // not all events have a email or url property, which will result in an error
+    // const events = _.map(req.body, (event) => { // iterate the events object
+    //   console.log(event);
+    // });
+
+    const p = new Path('/api/surveys/:surveyId/:choice'); // create parser object of url paths
+
+    // const events = _.map(req.body, ({ email, url }) => {                       // destructuring the 'event' object, we only need url/email
+
+    //     // const pathname = new URL(url).pathname;                             // create path helper outside of map function
+    //     // const match = p.test(pathname);                                     // test the URL based on Path
+    //   const match = p.test(new URL(url).pathname);                             // refactored the previous two lines
+
+    //   if(match){
+    //     return { email, surveyId: match.surveyId, choice: match.choice }
+    //   }
+
+    // });
+
+    // const compactEvents = _.compact(events);                                   // lodash compact() helper will remove undefined elements
+    // const uniqueEvents = _.uniqBy(compactEvents, 'email', 'surveyId');         // lodash uniqueBy() helper will remove any duplicates with same email and surveyId
+
+    // refactord map function using lodash .chain helper
+    // const events = _.chain(req.body)
+    _.chain(req.body)
+
+      .map(({ email, url }) => {
+        // destructuring the 'event' object, we only need url/email
+
+        // const pathname = new URL(url).pathname;                               // create path helper outside of map function
+        // const match = p.test(pathname);                                       // test the URL based on Path
+        const match = p.test(new URL(url).pathname); // refactored the previous two lines
+
+        if (match) {
+          return { email, surveyId: match.surveyId, choice: match.choice }; // return results
+        }
+      })
+
+      .compact() // lodash compact() helper will remove undefined elements
+      .uniqBy('email', 'surveyId') // lodash uniqueBy() helper will remove any duplicates with same email and surveyId
+
+      .each(({ surveyId, email, choice }) => {
+
+        Survey.updateOne({
+          _id: surveyId,
+          recipients: {
+            $elemMatch: { email: email, responded: false }
+          }
+        }, {
+          $inc: { [choice]: 1 },  // $inc: increment
+          $set: { 'recipients.$.responded': true },
+          lastResponded: new Date()
+        }).exec();
+
+      }) // run over every element in the array (each event in the array)
+
+      .value(); // lodash value() pull the underlining/remaining array
+
+    // console.log(
+    //   new Date().toLocaleString() + ' -- unique event ----------------------'
+    // );
+    // console.log(events);
+    // console.log('------------------------');
+
+    res.send({}); // send a webhook response to sendgrid, or the webhook requests will continue
 
   });
 
   // create a new survey email and send it
   // using two middlewares to require login and that user has credits available
   app.post('/api/surveys', requireLogin, requireCredits, async (req, res) => {
-
     // retrieve the following properties from the req.body object and save in a variable wwith it's own name
     const { title, subject, body, recipients } = req.body;
 
@@ -41,7 +119,9 @@ module.exports = app => {
       // .map(email => { return { email: email }}     - for every email address return an object with the property email, to point to the email
 
       // before refactor
-      recipients: recipients.split(',').map(email => { return { email: email.trim() }}),
+      recipients: recipients.split(',').map(email => {
+        return { email: email.trim() };
+      }),
 
       // after es6 refactor
       // key and value for the return object are the same ('email: email') which can be condensed to just 'email'
@@ -49,8 +129,7 @@ module.exports = app => {
       // recipients: recipients.split(',').map(email => ({ email })),
 
       _user: req.user.id,
-      dateSent: Date.now()
-
+      dateSent: Date.now(),
     });
 
     // init mailer
@@ -60,7 +139,7 @@ module.exports = app => {
       // send email
       await mailer.send();
       // save the Survey model
-      await survey.save();                  // .save() is mongoose
+      await survey.save(); // .save() is mongoose
       // charge the user 1 credit
       req.user.credits -= 1;
       // save the update to user model andstore new user model to variable
@@ -68,15 +147,10 @@ module.exports = app => {
 
       // send back with new user
       res.send(user);
-
     } catch (err) {
-
       res.status(422).send(err);
-
     }
 
-
   });
-
 
 };

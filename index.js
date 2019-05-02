@@ -12,6 +12,8 @@ require('./models/Survey');
 require('./services/passport.js');
 // import express from 'express'           // example using ES2015 modules (node does not support)
 
+mongoose.Promise = global.Promise;
+
 // connect to MongoDB via mongoose
 mongoose.connect(
   keys.mongoURI,

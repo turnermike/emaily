@@ -11,9 +11,8 @@
     "start": "node index.js",
     "server": "nodemon index.js",
     "client": "npm run start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run webhook\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
-    "webhook": "ssh -R asdk3vndk34:80:localhost:5000 serveo.net"
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "",
   "license": "ISC",
@@ -25,10 +24,9 @@
     "localtunnel": "^1.9.1",
     "mongoose": "^5.4.10",
     "nodemon": "^1.18.9",
-    "npm-check-updates": "^3.1.8",
+    "npm-check-updates": "^2.15.0",
     "passport": "^0.4.0",
     "passport-google-oauth20": "^2.0.0",
-    "path-parser": "^4.2.0",
     "sendgrid": "^5.2.3",
     "stripe": "^6.23.1"
   }

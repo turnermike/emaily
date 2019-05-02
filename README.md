@@ -9,12 +9,32 @@ GitHub Repo:
 Server port: 5000
 Client port: 3000
 
+Helpful Links:
 
+* Serveo as a LocalTunnel Alternative *
+LocalTunnel was used in the original tutorial as a proxy to make the local server public.
+That project has since been halted and we're now using [Serveo](https://serveo.net/).
+[https://www.udemy.com/node-with-react-fullstack-web-development/learn/v4/questions/4582134](https://www.udemy.com/node-with-react-fullstack-web-development/learn/v4/questions/4582134)
+
+* ngrok as LocalTunnel Alternative *
+[https://ngrok.com/download](https://ngrok.com/download)
+[https://www.udemy.com/node-with-react-fullstack-web-development/learn/v4/questions/3213122](https://www.udemy.com/node-with-react-fullstack-web-development/learn/v4/questions/3213122)
+
+
+
+# Atlas
+Dev: `mongodb+srv://mike:NxjUgTIqbZwJsK7LIoaBs@emaily-bpjar.mongodb.net/emaily-dev?retryWrites=true`
+Prod: `mongodb+srv://mike:NxjUgTIqbZwJsK7LIoaBs@emaily-bpjar.mongodb.net/emaily-prod?retryWrites=true`
+
+## Mongo Shell
+Dev: `mongo "mongodb+srv://emaily-bpjar.mongodb.net/test" --username mike`
 
 
 
 
 # mLab
+Durring the second last section of the tutorial mLabs was aquired by MongoDB Atlas. Now using Altas, this is here for record keeping.
+
 Started tutorial using [mlab](https://mlab.com/home) for remote MongoDB hosting. Since then, Atlas had aquired mlab, now using Atlas.
 
 Dev: `mongodb://mike:password1@ds147233.mlab.com:47233/emaily-dev`
@@ -36,14 +56,6 @@ Password: password1
 
 
 
-# Atlas
-
-Dev: `mongodb+srv://mike:NxjUgTIqbZwJsK7LIoaBs@emaily-bpjar.mongodb.net/emaily-dev?retryWrites=true`
-Prod: `mongodb+srv://mike:NxjUgTIqbZwJsK7LIoaBs@emaily-bpjar.mongodb.net/emaily-prod?retryWrites=true`
-
-
-
-
 # Stripe
 Test Card: 4242 4242 4242 4242
 
@@ -54,12 +66,12 @@ Test Card: 4242 4242 4242 4242
 Using Sendgrid NPM package for sending email:
 [https://github.com/sendgrid/sendgrid-nodejs/tree/master/packages/mail](https://github.com/sendgrid/sendgrid-nodejs/tree/master/packages/mail)
 
-
-
-
 # Local Tunnel
 Used for handling webhooks in our local environment. Forwards a request to one of their URLs to a localhost domain.
 [https://localtunnel.github.io/www/](https://localtunnel.github.io/www/)
+
+From time to time the node process for localtunnel will not exit. Use the following to restart node:
+`killall node`
 
 
 
@@ -127,6 +139,15 @@ GET /surveys/new                        - form to create a new survey
 Run node and auto refresh on save.
 ```
 npm run dev
+```
+
+## ngrok
+Using ngrok as a backup for Serveo.
+
+Expose localhost to public url.
+
+```
+ngrok http 5000
 ```
 
 ## Heroku

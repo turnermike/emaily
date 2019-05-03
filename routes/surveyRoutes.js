@@ -19,6 +19,17 @@ const Survey = mongoose.model('surveys');
 
 module.exports = app => {
 
+  // retrieve surveys (async/await request)
+  app.get('/api/surveys', requireLogin, async (req, res) => {
+
+    // select all surveys that belong to current user
+    const surveys = await Survey.find({ _user: req.user.id })
+      .select({ recipients: false });
+
+    res.send(surveys);
+
+  });
+
   app.get('/api/surveys/:surveyId/:choice', (req, res) => {
 
     res.send('Thanks for voting!');
@@ -27,7 +38,9 @@ module.exports = app => {
   });
 
   app.get('/api/surveys/thanks', (req, res) => {
+
       res.send('Thanks! /api/surveys/test');
+
   });
 
   // sendgrid webhook for processing email click tracking

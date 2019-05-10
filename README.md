@@ -196,6 +196,62 @@ npm run build
 
 
 
+# General Notes
+
+## Steps taken to display list of surveys from /api/surveys endpoint.
+
+1. Create a Type in:
+`client/src/actions/types.js`
+```
+export const FETCH_SURVEYS = 'fetch_surveys';
+```
+
+2. Create an Action Creator to make network request to backend. Will get list of surveys, dispatch an Action of Type 'fetch_users'. Then we need to
+create a new Reducer to catch the data being catptured by that request.
+`clients/src/actions/index.js`
+```
+export const fetchSurveys = () => async dispatch => {     // no arguments requried, simple get, returns async function
+
+  const res = await axios.get('/api/surveys');            // get surveys from backend
+
+  dispatch({ type: FETCH_SURVEYS, payload: res.data });   // dispatch the action
+
+};
+```
+
+3. Create a Reducer to watch for a Type of FETCH_SURVEYS and return list of surveys.
+Create new file `clients/src/reducers/surveysReducer.js`
+```
+import { FETCH_SURVEYS } from '../actions/types';   // file exports various Types, using curly brackets to specify which Type
+
+export default function(state = [], action) {       // state = [], by default this reducer will return an empty array (app boots up)
+    // console.log('action', action);
+    switch(action.type) {
+        case FETCH_SURVEYS:
+            return action.payload;
+        default:
+            return state;
+    }
+}
+```
+
+4. Wiring the Reducer up to the combineReducers call in:
+`clients/src/reducers/index.js`
+```
+
+```
+import { combineReducers } from 'redux';
+import { reducer as reduxForm } from 'redux-form';
+import authReducer from './authReducer';
+import surveysReducer from '/.surveysReducer';                  // NEW LINE
+
+// object passed to this object has keys that represent the keys inside of the state object
+export default combineReducers({
+    auth: authReducer,
+    form: reduxForm,
+    surveys: surveysReducer                                     // NEW LINE
+});
+```
 
 
 

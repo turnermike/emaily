@@ -3,7 +3,7 @@
 // to determin if user is logged in
 
 import axios from 'axios'; // for ajax requests
-import { FETCH_USER } from './types';
+import { FETCH_USER, FETCH_SURVEYS } from './types';
 
 // const fetchUser = () => {
 //     return function(dispatch) {
@@ -40,5 +40,14 @@ export const submitSurvey = (values, history) => async dispatch => {
 
   // dipatch the action
   dispatch({ type: FETCH_USER, payload: res.data });
+
+};
+
+// retrieve list of surveys
+export const fetchSurveys = () => async dispatch => {     // no arguments requried, simple get, returns async function
+
+  const res = await axios.get('/api/surveys');            // get surveys from backend
+
+  dispatch({ type: FETCH_SURVEYS, payload: res.data });   // dispatch the action
 
 };

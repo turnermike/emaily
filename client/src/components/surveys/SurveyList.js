@@ -13,21 +13,27 @@ class SurveyList extends Component {
 
   renderSurveys() {
 
-    return this.props.surveys.reverse().map(survey => {
+    return this.props.surveys.reverse().map((survey, index) => {
       return (
-        <div className="card darken-1" key="{survey._id}">
+        <div className="card darken-1" key={index}>
           <div className="card-content">
             <span className="card-title">{survey.title}</span>
             <p>
               {survey.body}
+              <br /><br />
+              {survey._id}
+              <br /><br />
+              {index}
             </p>
-            <p class="right">
+            <p className="right">
               Sent On: {new Date(survey.dateSent).toLocaleDateString()}
             </p>
           </div>
           <div className="card-action">
-            <a>Yes: {survey.yes}</a>
-            <a>No: {survey.no}</a>
+            {/*<a href="#">Yes: {survey.yes}</a>*/}
+            <span>Yes: {survey.yes}</span>&nbsp;|&nbsp;
+            {/*<a href="#">No: {survey.no}</a>*/}
+            <span>No: {survey.no}</span>
           </div>
         </div>
       );

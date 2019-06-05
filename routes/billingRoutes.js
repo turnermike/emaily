@@ -6,9 +6,9 @@ const requireLogin = require('../middlewares/requireLogin');
 
 module.exports = app => {
 
-  console.log('STRIPE_PUBLISHABLE_KEY', keys.stripePublishableKey);
-  console.log('STRIPE_SECRET_KEY', keys.stripeSecretKey);
-  console.log('REACT_APP_STRIPE_KEY', process.env.REACT_APP_STRIPE_KEY);
+  // console.log('STRIPE_PUBLISHABLE_KEY', keys.stripePublishableKey);
+  // console.log('STRIPE_SECRET_KEY', keys.stripeSecretKey);
+  // console.log('REACT_APP_STRIPE_KEY', process.env.REACT_APP_STRIPE_KEY);
 
   // cal requireLogin before processing route
   app.post('/api/stripe', requireLogin, async (req, res) => {

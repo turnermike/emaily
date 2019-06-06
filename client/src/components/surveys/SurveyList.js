@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { fetchSurveys } from '../../actions';
 // import ResultsChart from './ResultsChart';
 import Chart from "react-google-charts";
@@ -37,19 +38,14 @@ class SurveyList extends Component {
             <span className="card-title">{survey.title}</span>
             <p>
               {survey.body}
-              <br /><br />
-              {survey._id}
-              <br /><br />
-              {index}
+            </p>
+            <p>
+              ID: {survey._id}
             </p>
             <p className="right">
               Sent On: {new Date(survey.dateSent).toLocaleDateString()}
             </p>
-          </div>
-          <div className="card-action">
-            <span>Yes: {survey.yes}</span>&nbsp;|&nbsp;
-            <span>No: {survey.no}</span>
-            <br />
+
             <Chart
               chartType="BarChart"
               width="100%"
@@ -70,6 +66,14 @@ class SurveyList extends Component {
               }}
               data={barGraphData}
             />
+
+          </div>
+          <div className="card-action">
+
+            <Link to="/surveys/delete" className="btn-floating btn-large red">
+              <i className="material-icons">delete</i>
+            </Link>
+
           </div>
         </div>
       );

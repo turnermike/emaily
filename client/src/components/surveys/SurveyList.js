@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchSurveys } from '../../actions';
-import ResultsChart from './ResultsChart';
+// import ResultsChart from './ResultsChart';
+import Chart from "react-google-charts";
 
 
 class SurveyList extends Component {
@@ -15,6 +16,20 @@ class SurveyList extends Component {
   renderSurveys() {
 
     return this.props.surveys.reverse().map((survey, index) => {
+
+      // const barGraphData = [
+      //   ['User Selection', 'Count', { role: 'style'}],
+      //   ['Yes', survey.yes, 'color: lightgreen'],
+      //   ['No', survey.no, 'color: lightblue']
+      // ];
+
+      const barGraphData = [
+        ['User Selection', 'Count', { role: 'style' }],
+        ['Yes', survey.yes, '#4CAF50'],
+        ['No', survey.no, '#F44336']
+      ];
+
+
 
       return (
         <div className="card darken-1" key={index}>
@@ -35,7 +50,26 @@ class SurveyList extends Component {
             <span>Yes: {survey.yes}</span>&nbsp;|&nbsp;
             <span>No: {survey.no}</span>
             <br />
-            <ResultsChart />
+            <Chart
+              chartType="BarChart"
+              width="100%"
+              height="300px"
+              loader={<div>Loading Chart</div>}
+              options={{
+                title: 'Survey Results',
+                legend: { position: 'none' },
+                hAxis: {
+                  title: 'Count',
+                  minValue: 0,
+                  titleTextStyle: { color: '#9E9E9E'}
+                },
+                vAxis: {
+                  title: 'User Selection',
+                  titleTextStyle: { color: '#9E9E9E' }
+                }
+              }}
+              data={barGraphData}
+            />
           </div>
         </div>
       );

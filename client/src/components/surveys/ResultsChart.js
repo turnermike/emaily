@@ -1,31 +1,27 @@
 import React from "react";
-import { Canvas } from "react-canvas-js";
+import Chart from "react-google-charts";
 
-// class Example extends Component {
-//   render() {
-//     return <Canvas options={particleOptions} />;
-//   }
-// }
+const ResultsChart = props => {
 
-const Chart = props => {
-
-  const particleOptions = {
-    maxParticles: 50,
-    colors: ["#2E1D62", "#513D91", "#487EEF", "#11A887", "#fc5c65", "#fed330"],
-    shapes: ["circle", "square"],
-    size: 10,
-    minSpeed: 0.05,
-    maxSpeed: 0.2,
-    alpha: 0.7,
-    backgroundColor: "#1E1F29"
-  };
+  const data = [
+    ["Year", "Visitations", { role: "style" }],
+    ["2010", 10, "color: gray"],
+    ["2020", 14, "color: #76A7FA"],
+    ["2030", 16, "color: blue"],
+    ["2040", 22, "stroke-color: #703593; stroke-width: 4; fill-color: #C5A5CF"],
+    [
+      "2050",
+      28,
+      "stroke-color: #871B47; stroke-opacity: 0.6; stroke-width: 8; fill-color: #BC5679; fill-opacity: 0.2"
+    ]
+  ];
 
   return (
     <div>
-      <Canvas options={particleOptions} />
+      <Chart chartType="BarChart" width="100%" height="400px" data={data} />
     </div>
   );
 
 };
 
-export default Chart;
+export default ResultsChart;

@@ -70,7 +70,7 @@ class SurveyList extends Component {
           </div>
           <div className="card-action">
 
-            <Link to="/surveys/delete" className="btn-floating btn-large red">
+            <Link to={`/api/surveys/delete/${survey._id}`} className="btn-floating btn-large red">
               <i className="material-icons">delete</i>
             </Link>
 

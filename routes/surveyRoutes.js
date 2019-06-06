@@ -30,6 +30,24 @@ module.exports = app => {
 
   });
 
+  app.get('/api/surveys/delete/:surveyId', requireLogin, async (req, res) => {
+
+    // res.send("Delete ID: " + req.params.surveyId);
+
+    const result = await Survey.findByIdAndDelete(req.params.surveyId, (err) => {
+      if(err) {
+        console.log('Error: ', err);
+      }
+
+      res.send("Deleted ID: " + req.params.surveyId);
+
+    });
+
+
+
+
+  });
+
   app.get('/api/surveys/:surveyId/:choice', (req, res) => {
 
     res.send('Thanks for voting!');
@@ -42,6 +60,8 @@ module.exports = app => {
       res.send('Thanks! /api/surveys/test');
 
   });
+
+
 
   // sendgrid webhook for processing email click tracking
   app.post('/api/surveys/webhooks', (req, res) => {

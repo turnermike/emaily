@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchSurveys } from '../../actions';
+import ResultsChart from './ResultsChart';
 
 
 class SurveyList extends Component {
@@ -14,6 +15,7 @@ class SurveyList extends Component {
   renderSurveys() {
 
     return this.props.surveys.reverse().map((survey, index) => {
+
       return (
         <div className="card darken-1" key={index}>
           <div className="card-content">
@@ -34,6 +36,8 @@ class SurveyList extends Component {
             <span>Yes: {survey.yes}</span>&nbsp;|&nbsp;
             {/*<a href="#">No: {survey.no}</a>*/}
             <span>No: {survey.no}</span>
+            <br />
+            <ResultsChart />
           </div>
         </div>
       );

@@ -27,7 +27,7 @@ class SurveyList extends Component {
 
 
     withRouter.push('/surveys');
-    // this.context.history.push('/surveys');
+
 
   }
 
@@ -122,4 +122,4 @@ function mapStateToProps({ surveys }) {
 
 }
 
-export default connect(mapStateToProps, { fetchSurveys, deleteSurvey })(SurveyList);
+export default withRouter(connect(mapStateToProps, { fetchSurveys, deleteSurvey })(SurveyList));

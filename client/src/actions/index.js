@@ -1,6 +1,5 @@
-// fetchUser Action Creator using redux-thunk (AC returns an Action)
+// Action Creators
 // makes request to backend API to communicate with auth Reducer
-// to determin if user is logged in
 
 import axios from 'axios'; // for ajax requests
 import { FETCH_USER, FETCH_SURVEYS } from './types';
@@ -46,8 +45,33 @@ export const submitSurvey = (values, history) => async dispatch => {
 // retrieve list of surveys
 export const fetchSurveys = () => async dispatch => {     // no arguments requried, simple get, returns async function
 
+  console.log('action creator: fetchSurveys');
+
   const res = await axios.get('/api/surveys');            // get surveys from backend
 
   dispatch({ type: FETCH_SURVEYS, payload: res.data });   // dispatch the action
 
 };
+
+
+
+
+export const deleteSurvey = (surveyId) => async dispatch => {
+
+  console.log('action creator: deleteSurvey', surveyId);
+
+  // const res = await axios.post(`/api/surveys/delete/${surveyId}`);
+  await axios.post(`/api/surveys/delete/${surveyId}`);
+
+}
+
+
+
+
+
+
+
+
+
+
+

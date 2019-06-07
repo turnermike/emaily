@@ -30,7 +30,7 @@ module.exports = app => {
 
   });
 
-  app.get('/api/surveys/delete/:surveyId', requireLogin, async (req, res) => {
+  app.post('/api/surveys/delete/:surveyId', async (req, res) => {
 
     // res.send("Delete ID: " + req.params.surveyId);
 
@@ -42,9 +42,6 @@ module.exports = app => {
       res.send("Deleted ID: " + req.params.surveyId);
 
     });
-
-
-
 
   });
 

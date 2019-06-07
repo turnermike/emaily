@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { fetchSurveys } from '../../actions';
+import { Link, withRouter } from 'react-router-dom';
+import { fetchSurveys, deleteSurvey } from '../../actions';
 // import ResultsChart from './ResultsChart';
 import Chart from "react-google-charts";
 
@@ -11,6 +11,23 @@ class SurveyList extends Component {
   componentDidMount() {
 
     this.props.fetchSurveys();
+
+  }
+
+  onDeleteClick(surveyId) {
+
+    console.log('onDeleteClick', surveyId);
+
+    // this.props.deleteSurvey(surveyId, () => {
+    //   console.log('callback');
+    // });
+
+    this.props.deleteSurvey(surveyId);
+
+
+
+    withRouter.push('/surveys');
+    // this.context.history.push('/surveys');
 
   }
 
@@ -70,9 +87,15 @@ class SurveyList extends Component {
           </div>
           <div className="card-action">
 
-            <Link to={`/api/surveys/delete/${survey._id}`} className="btn-floating btn-large red">
+            <Link to="/surveys" onClick={this.onDeleteClick.bind(this, survey._id)} className="btn-floating btn-large red">
               <i className="material-icons">delete</i>
             </Link>
+
+
+{/*            <Link to="/surveys/delete" onClick={this.onDeleteClick.bind(this, survey._id)} className="btn-floating btn-large red">
+              <i className="material-icons">delete</i>
+            </Link>
+*/}
 
           </div>
         </div>
@@ -99,4 +122,4 @@ function mapStateToProps({ surveys }) {
 
 }
 
-export default connect(mapStateToProps, { fetchSurveys })(SurveyList);
+export default connect(mapStateToProps, { fetchSurveys, deleteSurvey })(SurveyList);

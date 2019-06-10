@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { fetchSurveys, deleteSurvey } from '../../actions';
-// import ResultsChart from './ResultsChart';
 import Chart from "react-google-charts";
 
 
@@ -24,30 +23,20 @@ class SurveyList extends Component {
 
     this.props.deleteSurvey(surveyId);
 
-
-
-    withRouter.push('/surveys');
-
+    this.props.fetchSurveys();
 
   }
 
   renderSurveys() {
 
     return this.props.surveys.reverse().map((survey, index) => {
-
-      // const barGraphData = [
-      //   ['User Selection', 'Count', { role: 'style'}],
-      //   ['Yes', survey.yes, 'color: lightgreen'],
-      //   ['No', survey.no, 'color: lightblue']
-      // ];
+    // return this.props.surveys.map((survey, index) => {
 
       const barGraphData = [
         ['User Selection', 'Count', { role: 'style' }],
         ['Yes', survey.yes, '#4CAF50'],
         ['No', survey.no, '#F44336']
       ];
-
-
 
       return (
         <div className="card darken-1" key={index}>
@@ -59,7 +48,7 @@ class SurveyList extends Component {
             <p>
               ID: {survey._id}
             </p>
-            <p className="right">
+            <p>
               Sent On: {new Date(survey.dateSent).toLocaleDateString()}
             </p>
 

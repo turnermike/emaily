@@ -35,6 +35,8 @@ export const submitSurvey = (values, history) => async dispatch => {
   // post form data to api
   const res = await axios.post('/api/surveys', values);
 
+  console.log('history', history);
+
   history.push('/surveys');
 
   // dipatch the action
@@ -48,19 +50,17 @@ export const fetchSurveys = () => async dispatch => {     // no arguments requri
   console.log('action creator: fetchSurveys');
 
   const res = await axios.get('/api/surveys');            // get surveys from backend
+  // console.log('res.data', res.data);
 
   dispatch({ type: FETCH_SURVEYS, payload: res.data });   // dispatch the action
 
 };
 
-
-
-
+// delete a survey
 export const deleteSurvey = (surveyId) => async dispatch => {
 
   console.log('action creator: deleteSurvey', surveyId);
 
-  // const res = await axios.post(`/api/surveys/delete/${surveyId}`);
   await axios.post(`/api/surveys/delete/${surveyId}`);
 
 }

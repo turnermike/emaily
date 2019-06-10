@@ -112,7 +112,7 @@ npm install --save redux-form
 
 ## Files
 If the file exports a function we use a lowercase letter for the first character.
-If the file exports a class we use a capital letter for the first character.
+If the file exports a class or component we use a capital letter for the first character.
 
 
 

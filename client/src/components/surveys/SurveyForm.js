@@ -60,12 +60,13 @@ class SurveyForm extends Component {
 // validate form data via redux form
 function validate(values) {
 
-  // console.log('values', values);
+  console.log('values', values);
 
   const errors = {};
 
   // validate email addresses
   errors.recipients = validateEmails(values.recipients || '');
+  errors.from = validateEmails(values.from || '');
 
   // checking for required fields
   _.each(formFields, ({ name, noValueError }) => {

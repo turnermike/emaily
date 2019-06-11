@@ -66,9 +66,13 @@ module.exports = app => {
     // use this when testing with Sendgrid
     // log the entire event when testing via Sendgrid "Test Your Integration" button
     // not all events have a email or url property, which will result in an error
-    // const events = _.map(req.body, (event) => { // iterate the events object
-    //   console.log(event);
-    // });
+    const events = _.map(req.body, (event) => { // iterate the events object
+      console.log(
+        new Date().toLocaleString() + ' -- unique event ----------------------'
+      );
+      console.log(event);
+      console.log('------------------------');
+    });
 
     const p = new Path('/api/surveys/:surveyId/:choice'); // create parser object of url paths
 
@@ -123,13 +127,7 @@ module.exports = app => {
 
       .value(); // lodash value() pull the underlining/remaining array
 
-    console.log(
-      new Date().toLocaleString() + ' -- unique event ----------------------'
-    );
-    console.log(events);
-    console.log('------------------------');
-
-    res.send({}); // send a webhook response to sendgrid, or the webhook requests will continue
+      res.send({}); // send a webhook response to sendgrid, or the webhook requests will continue
 
   });
 

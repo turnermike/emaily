@@ -17,13 +17,15 @@ class SurveyList extends Component {
 
     console.log('onDeleteClick', surveyId);
 
-    // this.props.deleteSurvey(surveyId, () => {
-    //   console.log('callback');
-    // });
+    let confirmed  = window.confirm("Are you sure you want to delete this survey?");
+    console.log('confirmed', confirmed);
 
-    this.props.deleteSurvey(surveyId);
-
-    this.props.fetchSurveys();
+    if ( confirmed ) {
+      this.props.deleteSurvey(surveyId);
+      this.props.fetchSurveys();
+    } else {
+      this.props.fetchSurveys();
+    }
 
   }
 

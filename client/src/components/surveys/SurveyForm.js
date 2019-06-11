@@ -11,6 +11,7 @@ import { reduxForm, Field } from 'redux-form';
 import { Link } from 'react-router-dom';                  // Link is used to route
 import SurveyField from './SurveyField';
 import validateEmails from '../../utils/validateEmails';
+import validateEmail from '../../utils/validateEmail';
 import formFields from './formFields';                    // importing a constant for field names and labels
 
 // this.props.handleSubmit is provided by reduxForm helper
@@ -66,6 +67,7 @@ function validate(values) {
 
   // validate email addresses
   errors.recipients = validateEmails(values.recipients || '');
+  errors.fromEmail = validateEmail(values.fromEmail || '');
 
   // checking for required fields
   _.each(formFields, ({ name, noValueError }) => {

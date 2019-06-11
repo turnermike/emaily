@@ -10,6 +10,7 @@ const surveySchema = new Schema({
   body: String,
   subject: String,
   recipients: [RecipientSchema],  // array of RecipientSchema records (Subdocument Collection)
+  fromEmail: { type: String },
   yes: { type: Number, default: 0 },
   no: { type: Number, default: 0 },
   // each survey belongs to a specific user

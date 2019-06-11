@@ -11,7 +11,7 @@ const keys = require('../config/keys');
 class Mailer extends helper.Mail {
 
   // constructor is called automatically when using the 'new' keyword when calling class
-  constructor({ subject, recipients }, content) {
+  constructor({ subject, recipients, fromEmail }, content) {
 
     // used to call functions on an object's parent
     // no arguments provided, so this will call the constructor for helper.Mail
@@ -19,7 +19,8 @@ class Mailer extends helper.Mail {
 
     // define properties
     this.sgApi = sendgrid(keys.sendGridKey);
-    this.from_email = new helper.Email('no-reply@emaily.com');
+    // this.from_email = new helper.Email('no-reply@emaily.com');
+    this.from_email = new helper.Email(fromEmail);
     this.subject = subject;
     this.body = new helper.Content('text/html', content);
     this.recipients = this.formatAddresses(recipients);

@@ -32,10 +32,12 @@ export const handleToken = (token) => async dispatch => {
 // submit a new survey for creation
 export const submitSurvey = (values, history) => async dispatch => {
 
+  // console.log('values', values);
+
   // post form data to api
   const res = await axios.post('/api/surveys', values);
 
-  console.log('history', history);
+  // console.log('history', history);
 
   history.push('/surveys');
 

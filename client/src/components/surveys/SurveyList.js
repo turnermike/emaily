@@ -49,6 +49,9 @@ class SurveyList extends Component {
               ID: {survey._id}
             </p>
             <p>
+              From Email: {survey.fromEmail}
+            </p>
+            <p>
               Sent On: {new Date(survey.dateSent).toLocaleDateString()}
             </p>
 

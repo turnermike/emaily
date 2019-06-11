@@ -30,6 +30,7 @@ module.exports = app => {
 
   });
 
+  // delete survey
   app.post('/api/surveys/delete/:surveyId', async (req, res) => {
 
     // res.send("Delete ID: " + req.params.surveyId);
@@ -45,6 +46,7 @@ module.exports = app => {
 
   });
 
+  // register a vote (clicked from the email)
   app.get('/api/surveys/:surveyId/:choice', (req, res) => {
 
     res.send('Thanks for voting!');
@@ -52,13 +54,12 @@ module.exports = app => {
 
   });
 
+  // thank-you page
   app.get('/api/surveys/thanks', (req, res) => {
 
       res.send('Thanks! /api/surveys/test');
 
   });
-
-
 
   // sendgrid webhook for processing email click tracking
   app.post('/api/surveys/webhooks', (req, res) => {
@@ -122,11 +123,11 @@ module.exports = app => {
 
       .value(); // lodash value() pull the underlining/remaining array
 
-    // console.log(
-    //   new Date().toLocaleString() + ' -- unique event ----------------------'
-    // );
-    // console.log(events);
-    // console.log('------------------------');
+    console.log(
+      new Date().toLocaleString() + ' -- unique event ----------------------'
+    );
+    console.log(events);
+    console.log('------------------------');
 
     res.send({}); // send a webhook response to sendgrid, or the webhook requests will continue
 
@@ -136,7 +137,7 @@ module.exports = app => {
   // using two middlewares to require login and that user has credits available
   app.post('/api/surveys', requireLogin, requireCredits, async (req, res) => {
     // retrieve the following properties from the req.body object and save in a variable wwith it's own name
-    const { title, subject, body, recipients } = req.body;
+    const { title, subject, body, recipients, fromEmail } = req.body;
 
     // new instance of a survey (lowercase variable name)
     const survey = new Survey({
@@ -152,6 +153,8 @@ module.exports = app => {
       recipients: recipients.split(',').map(email => {
         return { email: email.trim() };
       }),
+
+      fromEmail,
 
       // after es6 refactor
       // key and value for the return object are the same ('email: email') which can be condensed to just 'email'
@@ -177,6 +180,7 @@ module.exports = app => {
 
       // send back with new user
       res.send(user);
+
     } catch (err) {
       res.status(422).send(err);
     }

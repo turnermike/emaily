@@ -45,7 +45,7 @@ Dev: `mongodb://mike:password1@ds147233.mlab.com:47233/emaily-dev`
 ```
 Database: emaily-dev
 User: mike
-Password: password1
+Password: NxjUgTIqbZwJsK7LIoaBs (old? password1)
 ```
 
 Prod: `mongodb://mikeprod:password1@ds155073.mlab.com:55073/emaily-prod416`

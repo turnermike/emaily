@@ -27,6 +27,8 @@ That project has since been halted and we're now using [Serveo](https://serveo.n
 From time to time the node process for localtunnel will not exit. Use the following to restart node:
 `killall node`
 
+Need to manually change the Sendgrid webhook URL depending on the environment. See the Sendgrid section below.
+
 
 
 # MongoDB Atlas or to connect via MongoDB Compass
